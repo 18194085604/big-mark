@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * 
+ *
  * @description 抽奖策略
  * @create 2023-12-16 13:12
  */
@@ -18,6 +18,7 @@ public class Strategy {
     private Long strategyId;
     /** 抽奖策略描述 */
     private String strategyDesc;
+    private String ruleModels;
     /** 创建时间 */
     private Date createTime;
     /** 更新时间 */

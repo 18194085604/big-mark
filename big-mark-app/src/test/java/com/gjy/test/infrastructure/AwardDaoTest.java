@@ -2,6 +2,7 @@ package com.gjy.test.infrastructure;
 
 import com.alibaba.fastjson.JSON;
 import com.gjy.domain.strategy.service.IStrategyArmory;
+import com.gjy.domain.strategy.service.IStrategyDispatch;
 import com.gjy.infrastructure.persistent.dao.IAwardDao;
 import com.gjy.infrastructure.persistent.po.Award;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +26,7 @@ public class AwardDaoTest {
     @Resource
     private IAwardDao awardDao;
     @Resource
-    private IStrategyArmory strategyArmory;
+    private IStrategyDispatch strategyArmory;
 
     @Test
     public void test_queryAwardList() {
