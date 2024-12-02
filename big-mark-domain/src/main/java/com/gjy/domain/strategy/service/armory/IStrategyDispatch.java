@@ -1,4 +1,4 @@
-package com.gjy.domain.strategy.service;
+package com.gjy.domain.strategy.service.armory;
 
 public interface IStrategyDispatch {
 
