@@ -3,6 +3,7 @@ package com.gjy.infrastructure.persistent.repository;
 import com.gjy.domain.strategy.model.entity.StrategyAwardEntity;
 import com.gjy.domain.strategy.model.entity.StrategyEntity;
 import com.gjy.domain.strategy.model.entity.StrategyRuleEntity;
+import com.gjy.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
 import com.gjy.domain.strategy.repository.IStrategyRepository;
 import com.gjy.infrastructure.persistent.dao.IStrategyAwardDao;
 import com.gjy.infrastructure.persistent.dao.IStrategyDao;
@@ -120,5 +121,14 @@ public class StrategyRepository implements IStrategyRepository {
         strategyRule.setAwardId(awardId);
         strategyRule.setRuleModel(ruleModel);
         return strategyRuleDao.queryStrategyRuleValue(strategyRule);
+    }
+
+    @Override
+    public StrategyAwardRuleModelVO queryStrategyAwardRuleModelVO(Long strategyId, Integer awardId) {
+        StrategyAward strategyAward = new StrategyAward();
+        strategyAward.setStrategyId(strategyId);
+        strategyAward.setAwardId(awardId);
+        String ruleModels = strategyAwardDao.queryStrategyAwardRuleModels(strategyAward);
+        return StrategyAwardRuleModelVO.builder().ruleModels(ruleModels).build();
     }
 }
