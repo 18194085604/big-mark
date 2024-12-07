@@ -17,7 +17,7 @@ import java.util.*;
 
 @Service
 @Slf4j
-public class StrategyArmory  implements IStrategyArmory, IStrategyDispatch{
+public class StrategyArmoryDispatch  implements IStrategyArmory, IStrategyDispatch{
 
     @Resource
     private IStrategyRepository repository;
@@ -57,12 +57,15 @@ public class StrategyArmory  implements IStrategyArmory, IStrategyDispatch{
                 .orElse(BigDecimal.ZERO);
 
         // 2. 获取概率值总和
-        BigDecimal totalAwardRate = strategyAwardEntities.stream()
-                .map(StrategyAwardEntity::getAwardRate)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+//        BigDecimal totalAwardRate = strategyAwardEntities.stream()
+//                .map(StrategyAwardEntity::getAwardRate)
+//                .reduce(BigDecimal.ZERO, BigDecimal::add);
+//
+//        // 3. 用 1 % 0.0001 获得概率范围，百分位、千分位、万分位
+//        BigDecimal rateRange = totalAwardRate.divide(minAwardRate, 0, RoundingMode.CEILING);
 
-        // 3. 用 1 % 0.0001 获得概率范围，百分位、千分位、万分位
-        BigDecimal rateRange = totalAwardRate.divide(minAwardRate, 0, RoundingMode.CEILING);
+        // 2. 用 1 * 1000 获得概率范围，百分位、千分位、万分位
+        BigDecimal rateRange = BigDecimal.valueOf(convert(minAwardRate.doubleValue()));
 
         // 4. 生成策略奖品概率查找表「这里指需要在list集合中，存放上对应的奖品占位即可，占位越多等于概率越高」
         List<Integer> strategyAwardSearchRateTables = new ArrayList<>(rateRange.intValue());
@@ -105,6 +108,19 @@ public class StrategyArmory  implements IStrategyArmory, IStrategyDispatch{
         // 通过生成的随机值，获取概率值奖品查找表的结果
         return repository.getStrategyAwardAssemble(key, new SecureRandom().nextInt(rateRange));
 
+    }
+
+    /**
+     * 转换计算，只根据小数位来计算。如【0.01返回100】、【0.009返回1000】、【0.0018返回10000】
+     */
+    private double convert(double min){
+        double current = min;
+        double max = 1;
+        while (current < 1){
+            current = current * 10;
+            max = max * 10;
+        }
+        return max;
     }
 
 }

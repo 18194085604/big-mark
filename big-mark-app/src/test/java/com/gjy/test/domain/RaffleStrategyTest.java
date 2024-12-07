@@ -5,8 +5,8 @@ import com.gjy.domain.strategy.model.entity.RaffleAwardEntity;
 import com.gjy.domain.strategy.model.entity.RaffleFactorEntity;
 import com.gjy.domain.strategy.service.IRaffleStrategy;
 import com.gjy.domain.strategy.service.armory.IStrategyArmory;
+import com.gjy.domain.strategy.service.rule.chain.impl.RuleWeightLogicChain;
 import com.gjy.domain.strategy.service.rule.impl.RuleLockLogicFilter;
-import com.gjy.domain.strategy.service.rule.impl.RuleWeightLogicFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +17,8 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import javax.annotation.Resource;
 
+
+
 /**
  * @description 抽奖策略测试
  */
@@ -25,15 +27,14 @@ import javax.annotation.Resource;
 @SpringBootTest
 public class RaffleStrategyTest {
 
-
     @Resource
     private IStrategyArmory strategyArmory;
     @Resource
     private IRaffleStrategy raffleStrategy;
     @Resource
-    private RuleWeightLogicFilter ruleWeightLogicFilter;
-    @Resource
     private RuleLockLogicFilter ruleLockLogicFilter;
+    @Resource
+    private RuleWeightLogicChain ruleWeightLogicChain;
 
     @Before
     public void setUp() {
@@ -43,8 +44,9 @@ public class RaffleStrategyTest {
         log.info("测试结果：{}", strategyArmory.assembleLotteryStrategy(100003L));
 
         // 通过反射 mock 规则中的值
-        ReflectionTestUtils.setField(ruleWeightLogicFilter, "userScore", 40500L);
         ReflectionTestUtils.setField(ruleLockLogicFilter, "userRaffleCount", 10L);
+        // 通过反射 mock 规则中的值
+        ReflectionTestUtils.setField(ruleWeightLogicChain, "userScore", 4900L);
     }
 
     @Test
@@ -56,8 +58,8 @@ public class RaffleStrategyTest {
 
         RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(raffleFactorEntity);
 
-        log.info("请求参数：{}", com.alibaba.fastjson.JSON.toJSONString(raffleFactorEntity));
-        log.info("测试结果：{}", com.alibaba.fastjson.JSON.toJSONString(raffleAwardEntity));
+        log.info("请求参数：{}", JSON.toJSONString(raffleFactorEntity));
+        log.info("测试结果：{}", JSON.toJSONString(raffleAwardEntity));
     }
 
     @Test
@@ -69,8 +71,8 @@ public class RaffleStrategyTest {
 
         RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(raffleFactorEntity);
 
-        log.info("请求参数：{}", com.alibaba.fastjson.JSON.toJSONString(raffleFactorEntity));
-        log.info("测试结果：{}", com.alibaba.fastjson.JSON.toJSONString(raffleAwardEntity));
+        log.info("请求参数：{}", JSON.toJSONString(raffleFactorEntity));
+        log.info("测试结果：{}", JSON.toJSONString(raffleAwardEntity));
     }
 
     /**
@@ -86,7 +88,7 @@ public class RaffleStrategyTest {
 
         RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(raffleFactorEntity);
 
-        log.info("请求参数：{}", com.alibaba.fastjson.JSON.toJSONString(raffleFactorEntity));
+        log.info("请求参数：{}", JSON.toJSONString(raffleFactorEntity));
         log.info("测试结果：{}", JSON.toJSONString(raffleAwardEntity));
     }
 
