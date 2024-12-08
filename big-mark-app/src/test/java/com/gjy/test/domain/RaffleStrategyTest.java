@@ -6,7 +6,7 @@ import com.gjy.domain.strategy.model.entity.RaffleFactorEntity;
 import com.gjy.domain.strategy.service.IRaffleStrategy;
 import com.gjy.domain.strategy.service.armory.IStrategyArmory;
 import com.gjy.domain.strategy.service.rule.chain.impl.RuleWeightLogicChain;
-import com.gjy.domain.strategy.service.rule.impl.RuleLockLogicFilter;
+import com.gjy.domain.strategy.service.rule.filter.impl.RuleLockLogicFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;

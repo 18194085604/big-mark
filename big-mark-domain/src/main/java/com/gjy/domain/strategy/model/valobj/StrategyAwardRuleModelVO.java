@@ -1,6 +1,6 @@
 package com.gjy.domain.strategy.model.valobj;
 
-import com.gjy.domain.strategy.service.rule.factory.DefaultLogicFactory;
+import com.gjy.domain.strategy.service.rule.filter.factory.DefaultLogicFactory;
 import com.gjy.types.common.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
