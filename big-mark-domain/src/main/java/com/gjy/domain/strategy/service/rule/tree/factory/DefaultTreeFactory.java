@@ -1,7 +1,10 @@
 package com.gjy.domain.strategy.service.rule.tree.factory;
 
+import com.gjy.domain.strategy.model.entity.StrategyEntity;
 import com.gjy.domain.strategy.model.valobj.RuleLogicCheckTypeVO;
 import com.gjy.domain.strategy.model.valobj.RuleTreeVO;
+import com.gjy.domain.strategy.repository.IStrategyRepository;
+import com.gjy.domain.strategy.service.rule.chain.ILogicChain;
 import com.gjy.domain.strategy.service.rule.tree.ILogicTreeNode;
 import com.gjy.domain.strategy.service.rule.tree.factory.engine.IDecisionTreeEngine;
 import com.gjy.domain.strategy.service.rule.tree.factory.engine.impl.DecisionTreeEngine;
@@ -36,7 +39,7 @@ public class DefaultTreeFactory {
     @NoArgsConstructor
     public static class TreeActionEntity {
         private RuleLogicCheckTypeVO ruleLogicCheckType;
-        private StrategyAwardData strategyAwardData;
+        private StrategyAwardVO strategyAwardData;
     }
 
 
@@ -44,12 +47,13 @@ public class DefaultTreeFactory {
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class StrategyAwardData {
+    public static class StrategyAwardVO {
         /** 抽奖奖品ID - 内部流转使用 */
         private Integer awardId;
         /** 抽奖奖品规则 */
         private String awardRuleValue;
     }
+
 
 
 }
