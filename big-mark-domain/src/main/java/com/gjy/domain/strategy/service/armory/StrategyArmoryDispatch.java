@@ -4,6 +4,7 @@ import com.gjy.domain.strategy.model.entity.StrategyAwardEntity;
 import com.gjy.domain.strategy.model.entity.StrategyEntity;
 import com.gjy.domain.strategy.model.entity.StrategyRuleEntity;
 import com.gjy.domain.strategy.repository.IStrategyRepository;
+import com.gjy.types.common.Constants;
 import com.gjy.types.enums.ResponseCode;
 import com.gjy.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,12 @@ public class StrategyArmoryDispatch  implements IStrategyArmory, IStrategyDispat
         List<StrategyAwardEntity> strategyAwardEntities = repository.queryStrategyAwardList(strategyId);
         assembleLotteryStrategy(String.valueOf(strategyId), strategyAwardEntities);
 
+        for (StrategyAwardEntity strategyAward : strategyAwardEntities) {
+            Integer awardId = strategyAward.getAwardId();
+            Integer awardCount = strategyAward.getAwardCount();
+            cacheStrategyAwardCount(strategyId, awardId, awardCount);
+        }
+
         // 2. 权重策略配置 - 适用于 rule_weight 权重规则配置
         StrategyEntity strategyEntity = repository.queryStrategyEntityByStrategyId(strategyId);
         String ruleWeight = strategyEntity.getRuleWeight();
@@ -47,6 +54,18 @@ public class StrategyArmoryDispatch  implements IStrategyArmory, IStrategyDispat
         }
 
         return true;
+    }
+
+    /**
+     * 缓存奖品库存到Redis
+     *
+     * @param strategyId 策略ID
+     * @param awardId    奖品ID
+     * @param awardCount 奖品库存
+     */
+    private void cacheStrategyAwardCount(Long strategyId, Integer awardId, Integer awardCount) {
+        String cacheKey = Constants.RedisKey.STRATEGY_AWARD_COUNT_KEY + strategyId + Constants.UNDERLINE + awardId;
+//        repository.cacheStrategyAwardCount(cacheKey, awardCount);
     }
 
     private void assembleLotteryStrategy(String key, List<StrategyAwardEntity> strategyAwardEntities) {
