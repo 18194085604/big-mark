@@ -1,5 +1,6 @@
 package com.gjy.domain.strategy.service.raffle;
 
+import com.gjy.domain.strategy.model.entity.StrategyAwardEntity;
 import com.gjy.domain.strategy.model.valobj.RuleTreeVO;
 import com.gjy.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
 import com.gjy.domain.strategy.model.valobj.StrategyAwardStockKeyVO;
@@ -14,6 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -56,5 +59,8 @@ public class DefaultRaffleStrategy extends AbstractRaffleStrategy {
         repository.updateStrategyAwardStock(strategyId, awardId);
     }
 
-
+    @Override
+    public List<StrategyAwardEntity> queryRaffleStrategyAwardList(Long strategyId) {
+        return repository.queryStrategyAwardList(strategyId);
+    }
 }
