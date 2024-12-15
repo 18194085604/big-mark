@@ -26,13 +26,20 @@
     <select id="queryStrategyAwardListByStrategyId" parameterType="java.lang.Long" resultMap="dataMap">
         select strategy_id, award_id, award_count, award_count_surplus, award_rate
         from strategy_award
-        where strategy_id = #{strategy_id}
+        where strategy_id = #{strategyId}
     </select>
 
     <select id="queryStrategyAwardRuleModels" parameterType="com.gjy.infrastructure.persistent.po.StrategyAward" resultType="java.lang.String">
         select rule_models from strategy_award
-        where strategy_id = #{strategy_id} and award_id = #{awardId}
+        where strategy_id = #{strategyId} and award_id = #{awardId}
     </select>
+
+
+    <update id="updateStrategyAwardStock" parameterType="com.gjy.infrastructure.persistent.po.StrategyAward">
+        update strategy_award
+        set award_count_surplus = award_count_surplus - 1
+        where strategy_id = #{strategyId} and award_id = #{awardId} and award_count_surplus > 0
+    </update>
 
 
 </mapper>

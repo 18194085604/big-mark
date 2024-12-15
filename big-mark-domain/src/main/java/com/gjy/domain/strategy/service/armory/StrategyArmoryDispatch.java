@@ -65,7 +65,7 @@ public class StrategyArmoryDispatch  implements IStrategyArmory, IStrategyDispat
      */
     private void cacheStrategyAwardCount(Long strategyId, Integer awardId, Integer awardCount) {
         String cacheKey = Constants.RedisKey.STRATEGY_AWARD_COUNT_KEY + strategyId + Constants.UNDERLINE + awardId;
-//        repository.cacheStrategyAwardCount(cacheKey, awardCount);
+        repository.cacheStrategyAwardCount(cacheKey, awardCount);
     }
 
     private void assembleLotteryStrategy(String key, List<StrategyAwardEntity> strategyAwardEntities) {
@@ -142,4 +142,9 @@ public class StrategyArmoryDispatch  implements IStrategyArmory, IStrategyDispat
         return max;
     }
 
+    @Override
+    public Boolean subtractionAwardStock(Long strategyId, Integer awardId) {
+        String cacheKey = Constants.RedisKey.STRATEGY_AWARD_COUNT_KEY + strategyId + Constants.UNDERLINE + awardId;
+        return repository.subtractionAwardStock(cacheKey);
+    }
 }

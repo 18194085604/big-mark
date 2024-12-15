@@ -2,6 +2,7 @@ package com.gjy.domain.strategy.service.raffle;
 
 import com.gjy.domain.strategy.model.valobj.RuleTreeVO;
 import com.gjy.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
+import com.gjy.domain.strategy.model.valobj.StrategyAwardStockKeyVO;
 import com.gjy.domain.strategy.repository.IStrategyRepository;
 import com.gjy.domain.strategy.service.AbstractRaffleStrategy;
 import com.gjy.domain.strategy.service.armory.IStrategyDispatch;
@@ -44,5 +45,16 @@ public class DefaultRaffleStrategy extends AbstractRaffleStrategy {
         ILogicChain logicChain = defaultChainFactory.openLogicChain(strategyId);
         return logicChain.logic(userId, strategyId);
     }
+
+    @Override
+    public StrategyAwardStockKeyVO takeQueueValue() throws InterruptedException {
+        return repository.takeQueueValue();
+    }
+
+    @Override
+    public void updateStrategyAwardStock(Long strategyId, Integer awardId) {
+        repository.updateStrategyAwardStock(strategyId, awardId);
+    }
+
 
 }
