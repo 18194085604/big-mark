@@ -1,19 +1,21 @@
-package com.gjy.infrastructure.persistent.po;
+package com.gjy.domain.activity.model.entity;
 
+import com.gjy.domain.activity.model.valobj.ActivityStateVO;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 /**
- * @description 抽奖活动表 持久化对象
+ * @description 活动实体对象
  */
 @Data
-public class RaffleActivity {
-
-    /**
-     * 自增ID
-     */
-    private Long id;
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class ActivityEntity {
 
     /**
      * 活动ID
@@ -41,16 +43,6 @@ public class RaffleActivity {
     private Date endDateTime;
 
     /**
-     * 库存总量
-     */
-    private Integer stockCount;
-
-    /**
-     * 剩余库存
-     */
-    private Integer stockCountSurplus;
-
-    /**
      * 活动参与次数配置
      */
     private Long activityCountId;
@@ -63,16 +55,6 @@ public class RaffleActivity {
     /**
      * 活动状态
      */
-    private String state;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
+    private ActivityStateVO state;
 
 }
