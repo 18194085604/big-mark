@@ -1,20 +1,20 @@
-package com.gjy.domain.activity.service;
+package com.gjy.domain.activity.service.quote;
 
-import com.alibaba.fastjson2.JSON;
 import com.gjy.domain.activity.model.aggregate.CreateOrderAggregate;
 import com.gjy.domain.activity.model.entity.*;
 import com.gjy.domain.activity.respositiory.IActivityRepository;
-import com.gjy.domain.activity.service.rule.IActionChain;
-import com.gjy.domain.activity.service.rule.factory.DefaultActivityChainFactory;
+import com.gjy.domain.activity.service.IRaffleActivityAccountQuotaService;
+import com.gjy.domain.activity.service.quote.rule.IActionChain;
+import com.gjy.domain.activity.service.quote.rule.factory.DefaultActivityChainFactory;
 import com.gjy.types.enums.ResponseCode;
 import com.gjy.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 @Slf4j
-public abstract class AbstractRaffleActivity extends RaffleActivitySupport implements IRaffleOrder{
+public abstract class AbstractRaffleActivityAccountQuota extends RaffleActivityAccountQuotaSupport implements IRaffleActivityAccountQuotaService {
 
-    public AbstractRaffleActivity(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
+    public AbstractRaffleActivityAccountQuota(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
         super(activityRepository, defaultActivityChainFactory);
     }
 

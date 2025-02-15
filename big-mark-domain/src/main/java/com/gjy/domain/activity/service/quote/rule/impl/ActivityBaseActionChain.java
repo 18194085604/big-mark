@@ -1,10 +1,10 @@
-package com.gjy.domain.activity.service.rule.impl;
+package com.gjy.domain.activity.service.quote.rule.impl;
 
 import com.gjy.domain.activity.model.entity.ActivityCountEntity;
 import com.gjy.domain.activity.model.entity.ActivityEntity;
 import com.gjy.domain.activity.model.entity.ActivitySkuEntity;
 import com.gjy.domain.activity.model.valobj.ActivityStateVO;
-import com.gjy.domain.activity.service.rule.AbstractActionChain;
+import com.gjy.domain.activity.service.quote.rule.AbstractActionChain;
 import com.gjy.types.enums.ResponseCode;
 import com.gjy.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;

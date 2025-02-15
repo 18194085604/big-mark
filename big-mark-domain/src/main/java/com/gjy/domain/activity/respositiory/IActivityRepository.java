@@ -1,9 +1,8 @@
 package com.gjy.domain.activity.respositiory;
 
 import com.gjy.domain.activity.model.aggregate.CreateOrderAggregate;
-import com.gjy.domain.activity.model.entity.ActivityCountEntity;
-import com.gjy.domain.activity.model.entity.ActivityEntity;
-import com.gjy.domain.activity.model.entity.ActivitySkuEntity;
+import com.gjy.domain.activity.model.aggregate.CreatePartakeOrderAggregate;
+import com.gjy.domain.activity.model.entity.*;
 import com.gjy.domain.activity.model.valobj.ActivitySkuStockKeyVO;
 
 import java.util.Date;
@@ -34,4 +33,14 @@ public interface IActivityRepository {
     void activitySkuStockConsumeSendQueue(ActivitySkuStockKeyVO build);
 
     void cacheActivitySkuStockCount(String cacheKey, Integer stockCount);
+
+    UserRaffleOrderEntity queryNoUsedRaffleOrder(PartakeRaffleActivityEntity partakeRaffleActivityEntity);
+
+    void saveCreatePartakeOrderAggregate(CreatePartakeOrderAggregate createPartakeOrderAggregate);
+
+    ActivityAccountEntity queryActivityAccountByUserId(String userId, Long activityId);
+
+    ActivityAccountMonthEntity queryActivityAccountMonthByUserId(String userId, Long activityId, String month);
+
+    ActivityAccountDayEntity queryActivityAccountDayByUserId(String userId, Long activityId, String day);
 }

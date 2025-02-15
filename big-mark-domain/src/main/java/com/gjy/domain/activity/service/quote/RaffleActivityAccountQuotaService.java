@@ -1,11 +1,12 @@
-package com.gjy.domain.activity.service;
+package com.gjy.domain.activity.service.quote;
 
 import com.gjy.domain.activity.model.aggregate.CreateOrderAggregate;
 import com.gjy.domain.activity.model.entity.*;
 import com.gjy.domain.activity.model.valobj.ActivitySkuStockKeyVO;
 import com.gjy.domain.activity.model.valobj.OrderStateVO;
 import com.gjy.domain.activity.respositiory.IActivityRepository;
-import com.gjy.domain.activity.service.rule.factory.DefaultActivityChainFactory;
+import com.gjy.domain.activity.service.IRaffleActivitySkuStockService;
+import com.gjy.domain.activity.service.quote.rule.factory.DefaultActivityChainFactory;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,9 @@ import java.util.Date;
  * 抽检活动服务
  */
 @Service
-public class RaffleActivityService extends AbstractRaffleActivity implements ISkuStock{
+public class RaffleActivityAccountQuotaService extends AbstractRaffleActivityAccountQuota implements IRaffleActivitySkuStockService {
 
-    public RaffleActivityService(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
+    public RaffleActivityAccountQuotaService(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
         super(activityRepository, defaultActivityChainFactory);
     }
 

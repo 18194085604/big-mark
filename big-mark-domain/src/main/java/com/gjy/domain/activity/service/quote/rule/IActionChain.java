@@ -1,4 +1,4 @@
-package com.gjy.domain.activity.service.rule;
+package com.gjy.domain.activity.service.quote.rule;
 
 import com.gjy.domain.activity.model.entity.ActivityCountEntity;
 import com.gjy.domain.activity.model.entity.ActivityEntity;

@@ -1,6 +1,6 @@
-package com.gjy.domain.activity.service.rule.factory;
+package com.gjy.domain.activity.service.quote.rule.factory;
 
-import com.gjy.domain.activity.service.rule.IActionChain;
+import com.gjy.domain.activity.service.quote.rule.IActionChain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.stereotype.Service;

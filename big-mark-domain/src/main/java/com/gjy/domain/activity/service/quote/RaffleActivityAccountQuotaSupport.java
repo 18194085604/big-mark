@@ -1,21 +1,21 @@
-package com.gjy.domain.activity.service;
+package com.gjy.domain.activity.service.quote;
 
 import com.gjy.domain.activity.model.entity.ActivityCountEntity;
 import com.gjy.domain.activity.model.entity.ActivityEntity;
 import com.gjy.domain.activity.model.entity.ActivitySkuEntity;
 import com.gjy.domain.activity.respositiory.IActivityRepository;
-import com.gjy.domain.activity.service.rule.factory.DefaultActivityChainFactory;
+import com.gjy.domain.activity.service.quote.rule.factory.DefaultActivityChainFactory;
 
 /**
  * @description 抽奖活动的支撑类
  */
-public class RaffleActivitySupport {
+public class RaffleActivityAccountQuotaSupport {
 
     protected DefaultActivityChainFactory defaultActivityChainFactory;
 
     protected IActivityRepository activityRepository;
 
-    public RaffleActivitySupport(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
+    public RaffleActivityAccountQuotaSupport(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
         this.activityRepository = activityRepository;
         this.defaultActivityChainFactory = defaultActivityChainFactory;
     }
