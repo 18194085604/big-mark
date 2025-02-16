@@ -1,4 +1,4 @@
-package com.gjy.test.domain;
+package com.gjy.test.domain.strategy;
 
 import com.gjy.domain.strategy.service.armory.IStrategyArmory;
 import com.gjy.domain.strategy.service.armory.IStrategyDispatch;

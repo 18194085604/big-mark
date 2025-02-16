@@ -1,4 +1,4 @@
-package com.gjy.test.domain;
+package com.gjy.test.domain.strategy;
 
 import com.alibaba.fastjson2.JSON;
 import com.gjy.domain.strategy.service.armory.IStrategyArmory;
